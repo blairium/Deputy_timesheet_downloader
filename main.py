@@ -1,4 +1,25 @@
 
+
+'''
+This script utilises selenium and BeautifulSoup4 to download timesheet data from Deputy then uses pandas to save that data as a csv.
+
+I wrote this script to help employees access their timesheet information more easily so that they can calculate underpayments more easily.
+
+I intend to add more data processing at some point to calculate things like hours worked, weekend hours worked, overtime etc and to compare pay 
+against the award rate. I decided to release it before these things were finished because it's still useful in this form.
+
+To use, install the required packages thrught the command
+
+'pip install -r requirements.txt'
+
+then run script. Enter Email and password when prompted, you'll also be prompted to add your workplaces subdomain and country code.
+e.g if you access deputy via https://myworkplace.au.deputy.com your subdomain is myworkplace.au
+
+
+'''
+
+
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
