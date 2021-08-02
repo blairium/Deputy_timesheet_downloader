@@ -45,28 +45,32 @@ def get_timesheets():
         # Web driver declaration
         driver.get(WEBDRIVER_PATH)
 
-        # Create a payload with the credentials
-        payload = {'username':input('Enter Email Address: '), 
-                'password':getpass()
-                }
+
         workplace = input('Enter workplace deputy subdomain including country code: ')#workplace's deputy subdomain including country code
                 
         # Website with login
-        print('Logging in')
+
         URL = "https://once.deputy.com/my/login"
         # Web driver going into website
         driver.get(URL)
         # Create a variable so you are able to check if login was successful
         login_title = driver.title
 
-        # Sending credentials 
-        driver.find_element_by_id('login-email').send_keys(payload['username'])
-        driver.find_element_by_id('login-password').send_keys(payload['password'])
-        driver.find_element_by_id('btnLoginSubmit_ctl').click()
+        while login_title == driver.title:
+                
+                    # Create a payload with the credentials
+            payload = {'username':input('Enter Email Address: '), 
+                    'password':getpass()
+                    }
+            print('Logging in')
+            # Sending credentials 
+            driver.find_element_by_id('login-email').send_keys(payload['username'])
+            driver.find_element_by_id('login-password').send_keys(payload['password'])
+            driver.find_element_by_id('btnLoginSubmit_ctl').click()
 
-        #Check login
-        if login_title == driver.title:
-            print("Login failed")
+            #Check login
+            if login_title == driver.title:
+                print("Login failed, try again")
         print('Login sucessfull!')
 
         driver.get('https://{}.deputy.com/#profile'.format(workplace))
